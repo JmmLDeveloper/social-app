@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Tag,Post,Comment,User,Token,Subscription
+from .models import Tag, Post, Comment, User, Token, Subscription
 
 
 admin.site.register(User)

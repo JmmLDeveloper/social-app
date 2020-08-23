@@ -1,0 +1,7 @@
+{
+    "python.linting.enabled": true,
+    "python.pythonPath": "/home/jose/.local/share/virtualenvs/django-backend-73iDso_R/bin/python",
+    "python.linting.pylintArgs": [
+        "--load-plugins=pylint_django"
+   ]
+}

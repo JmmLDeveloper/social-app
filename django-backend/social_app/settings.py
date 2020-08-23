@@ -41,8 +41,11 @@ INSTALLED_APPS = [
     'django_extensions', # extra lib for seeing the routes
     'rest_framework',
     'corsheaders', # extra lib for allowing vue to consume the api from another origin
-    'main'
+    'main',
+    'channels'
 ]
+
+ASGI_APPLICATION = "social_app.routing.application"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

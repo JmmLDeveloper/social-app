@@ -1,9 +1,14 @@
 from rest_framework import serializers
-from .models import User,Tag,Post,Comment,Subscription
+from .models import User,Tag,Post,Comment,Subscription,Product
 from rest_flex_fields import FlexFieldsModelSerializer
 
 from django.contrib.auth.password_validation import validate_password
 
+
+class ProductSerializer(serializers.ModelSerializer):
+  class Meta:
+    model = Product
+    fields = '__all__'
 
 class SubscriptionSerializer(serializers.ModelSerializer):
   target = serializers.ReadOnlyField(source='target.username')
@@ -62,6 +67,7 @@ class UserSerializer(FlexFieldsModelSerializer):
   password1 = serializers.CharField(write_only=True,max_length=64)
   password2 = serializers.CharField(write_only=True,max_length=64)
   subscription_users = UserOfSubscription(many=True,read_only=True)
+  token = serializers.ReadOnlyField(source='token.value')
   class Meta:
     model = User
     fields = [
@@ -72,8 +78,10 @@ class UserSerializer(FlexFieldsModelSerializer):
       'age',
       'first_name',
       'description',
-      'subscription_users'
+      'subscription_users',
+      'token'
     ]
+
 
   def validate_password1(self,value):
     validate_password(value)
